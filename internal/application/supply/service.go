@@ -7,11 +7,11 @@ import (
 	"trade-organization/internal/domain"
 )
 
-// SupplyRepository — порт для работы с поставками
 type SupplyRepository interface {
 	CreateRequest(ctx context.Context, req domain.Request, details []domain.RequestDetail) (int, error)
 	GenerateOrderFromRequest(ctx context.Context, requestID int, supplierID int) error
 	ReceiveOrder(ctx context.Context, orderID int, storeID int) error
+	GetOrderDetails(ctx context.Context, orderID int) ([]domain.OrderDetailReport, error)
 }
 
 type SupplyService struct {
@@ -22,7 +22,6 @@ func NewSupplyService(repo SupplyRepository) *SupplyService {
 	return &SupplyService{repo: repo}
 }
 
-// CreateRequest создает заявку, предварительно валидируя данные бизнес-логики
 func (s *SupplyService) CreateRequest(ctx context.Context, req domain.Request, details []domain.RequestDetail) (int, error) {
 	if len(details) == 0 {
 		return 0, errors.New("request must contain at least one item")
@@ -34,11 +33,10 @@ func (s *SupplyService) CreateRequest(ctx context.Context, req domain.Request, d
 		}
 	}
 
-	req.Status = "New" // Принудительно ставим статус новой заявки со стороны бизнес-логики
+	req.Status = "New"
 	return s.repo.CreateRequest(ctx, req, details)
 }
 
-// ProcessRequestToOrder конвертирует заявку в заказ поставщику
 func (s *SupplyService) ProcessRequestToOrder(ctx context.Context, requestID int, supplierID int) error {
 	if requestID <= 0 || supplierID <= 0 {
 		return errors.New("invalid request or supplier ID")
@@ -46,10 +44,13 @@ func (s *SupplyService) ProcessRequestToOrder(ctx context.Context, requestID int
 	return s.repo.GenerateOrderFromRequest(ctx, requestID, supplierID)
 }
 
-// ReceiveOrder принимает товар на склад
 func (s *SupplyService) ReceiveOrder(ctx context.Context, orderID int, storeID int) error {
 	if orderID <= 0 || storeID <= 0 {
 		return errors.New("invalid order or store ID")
 	}
 	return s.repo.ReceiveOrder(ctx, orderID, storeID)
+}
+
+func (s *SupplyService) GetOrderDetails(ctx context.Context, orderID int) ([]domain.OrderDetailReport, error) {
+	return s.repo.GetOrderDetails(ctx, orderID)
 }

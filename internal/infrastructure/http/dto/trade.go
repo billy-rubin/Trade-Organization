@@ -1,21 +1,41 @@
 package dto
 
-import "time"
+import (
+	"time"
+	"trade-organization/internal/domain"
+)
 
-// SaleResponse — то, что видит фронтенд при просмотре чека
-type SaleResponse struct {
-	ID         int       `json:"id"`
-	Date       time.Time `json:"sale_date"`
-	SellerID   int       `json:"seller_id"`
-	CustomerID *int      `json:"customer_id,omitempty"`
+type CreateSaleItemRequest struct {
+	ProductID int `json:"product_id" binding:"required"`
+	Quantity  int `json:"quantity" binding:"required,gt=0"`
 }
 
-// CreateSaleRequest — то, что приходит с фронтенда при оформлении продажи
 type CreateSaleRequest struct {
-	SellerID   int  `json:"seller_id" binding:"required"`
-	CustomerID *int `json:"customer_id"`
-	Items      []struct {
-		ProductID int `json:"product_id" binding:"required"`
-		Quantity  int `json:"quantity" binding:"required,gt=0"`
-	} `json:"items" binding:"required,dive"`
+	CustomerID *int                    `json:"customer_id"`
+	Items      []CreateSaleItemRequest `json:"items" binding:"required,dive"`
+}
+
+func (req *CreateSaleRequest) ToDomain(sellerID int) (domain.Sale, []domain.SaleDetail) {
+	sale := domain.Sale{
+		Date:       time.Now(),
+		SellerID:   sellerID,
+		CustomerID: req.CustomerID,
+	}
+
+	details := make([]domain.SaleDetail, 0, len(req.Items))
+	for _, item := range req.Items {
+		details = append(details, domain.SaleDetail{
+			ProductID: item.ProductID,
+			Quantity:  item.Quantity,
+		})
+	}
+
+	return sale, details
+}
+
+type TransferProductRequest struct {
+	FromStoreID int `json:"from_store_id" binding:"required"`
+	ToStoreID   int `json:"to_store_id" binding:"required"`
+	ProductID   int `json:"product_id" binding:"required"`
+	Quantity    int `json:"quantity" binding:"required,gt=0"`
 }

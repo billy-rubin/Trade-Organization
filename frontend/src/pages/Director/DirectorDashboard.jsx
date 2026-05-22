@@ -4,6 +4,9 @@ import InventoryReport from './InventoryReport';
 import ProfitabilityReport from './ProfitabilityReport';
 import TurnoverReport from './TurnoverReport';
 import StoreManagement from './StoreManagement';
+import EfficiencyReport from './EfficiencyReport';
+import StoreEfficiency from './StoreEfficiency'; // Наш импорт 7
+import ProductCustomers from './ProductCustomers'; // Наш импорт 10
 
 const DirectorDashboard = () => {
     const [activeTab, setActiveTab] = useState('inventory');
@@ -19,6 +22,9 @@ const DirectorDashboard = () => {
         { id: 'inventory', label: 'Инвентаризация' },
         { id: 'profitability', label: 'Рентабельность' },
         { id: 'turnover', label: 'Товарооборот' },
+        { id: 'stores', label: 'Управление точками' },
+        { id: 'efficiency', label: 'Эффективность (Запрос 7)' },
+        { id: 'prod_customers', label: 'Покупатели товара (Запрос 10)' },
         { id: 'stores', label: 'Управление точками' },
     ];
 
@@ -54,6 +60,8 @@ const DirectorDashboard = () => {
                 {activeTab === 'inventory' && <InventoryReport />}
                 {activeTab === 'profitability' && <ProfitabilityReport />}
                 {activeTab === 'turnover' && <TurnoverReport />}
+                {activeTab === 'efficiency' && <StoreEfficiency />}
+                {activeTab === 'prod_customers' && <ProductCustomers />}
                 {activeTab === 'stores' && <StoreManagement />}
             </main>
         </div>
