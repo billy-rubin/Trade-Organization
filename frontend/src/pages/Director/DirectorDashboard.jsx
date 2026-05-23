@@ -23,8 +23,8 @@ const DirectorDashboard = () => {
         { id: 'profitability', label: 'Рентабельность' },
         { id: 'turnover', label: 'Товарооборот' },
         { id: 'stores', label: 'Управление точками' },
-        { id: 'efficiency', label: 'Эффективность (Запрос 7)' },
-        { id: 'prod_customers', label: 'Покупатели товара (Запрос 10)' },
+        { id: 'efficiency', label: 'Эффективность' },
+        { id: 'prod_customers', label: 'Покупатели товара' },
         { id: 'stores', label: 'Управление точками' },
     ];
 

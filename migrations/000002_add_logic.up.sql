@@ -45,23 +45,19 @@ DECLARE
 v_store_id INT;
     v_current_stock INT;
 BEGIN
-    -- Находим магазин, в котором пробит чек, через связь с таблицей Sale и Seller
 SELECT sel.store_id INTO v_store_id
 FROM Sale s
          JOIN Seller sel ON s.seller_id = sel.seller_id
 WHERE s.sale_id = NEW.sale_id;
 
--- Получаем текущий остаток товара в этом магазине
 SELECT stock_quantity INTO v_current_stock
 FROM Store_Inventory
 WHERE store_id = v_store_id AND product_id = NEW.product_id;
 
--- Проверяем, хватает ли товара
 IF v_current_stock IS NULL OR v_current_stock < NEW.quantity THEN
         RAISE EXCEPTION 'Sale Error: Not enough stock for Product ID: % in Store ID: %', NEW.product_id, v_store_id;
 END IF;
 
-    -- Уменьшаем количество на складе
 UPDATE Store_Inventory
 SET stock_quantity = stock_quantity - NEW.quantity
 WHERE store_id = v_store_id AND product_id = NEW.product_id;

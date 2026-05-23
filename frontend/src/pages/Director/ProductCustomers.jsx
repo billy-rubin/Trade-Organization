@@ -24,7 +24,7 @@ const ProductCustomers = () => {
 
     return (
         <div>
-            <h2>Покупатели конкретного товара (Запрос 10)</h2>
+            <h2>Покупатели конкретного товара</h2>
             <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                 <input type="number" placeholder="ID Товара" value={productId} onChange={e => setProductId(e.target.value)} required style={{ padding: '8px' }}/>
                 <input type="number" placeholder="ID Точки" value={storeId} onChange={e => setStoreId(e.target.value)} required style={{ padding: '8px' }}/>

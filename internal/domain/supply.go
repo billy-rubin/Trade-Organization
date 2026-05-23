@@ -41,7 +41,6 @@ type Payment struct {
 	StoreID int
 }
 
-// Результат Запроса 9: Детали заказа
 type OrderDetailReport struct {
 	OrderID      int       `json:"order_id"`
 	OrderDate    time.Time `json:"order_date"`

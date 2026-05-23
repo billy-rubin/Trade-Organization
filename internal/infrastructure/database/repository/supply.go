@@ -86,7 +86,6 @@ func (r *SupplyRepository) ReceiveOrder(ctx context.Context, orderID int, storeI
 	return nil
 }
 
-// Запрос 9: Получить номенклатуру и объем товаров в указанном заказе
 func (r *SupplyRepository) GetOrderDetails(ctx context.Context, orderID int) ([]domain.OrderDetailReport, error) {
 	query := `
 		SELECT 

@@ -76,7 +76,6 @@ func (h *ReportHandler) GetTurnover(c *gin.Context) {
 	c.JSON(http.StatusOK, dto.ToTurnoverResponseList(reportData))
 }
 
-// GetStoreEfficiency — Обработчик для Запроса 7 (Эффективность точки)
 func (h *ReportHandler) GetStoreEfficiency(c *gin.Context) {
 	storeIDStr := c.Query("store_id")
 	storeID, err := strconv.Atoi(storeIDStr)
@@ -94,7 +93,6 @@ func (h *ReportHandler) GetStoreEfficiency(c *gin.Context) {
 	c.JSON(http.StatusOK, report)
 }
 
-// GetSupplierDeliveries — Обработчик для Запроса 6 (Поставки поставщика)
 func (h *ReportHandler) GetSupplierDeliveries(c *gin.Context) {
 	supplierID, err1 := strconv.Atoi(c.Query("supplier_id"))
 	productID, err2 := strconv.Atoi(c.Query("product_id"))
@@ -122,7 +120,6 @@ func (h *ReportHandler) GetSupplierDeliveries(c *gin.Context) {
 	c.JSON(http.StatusOK, deliveries)
 }
 
-// GetProductCustomers — Обработчик для Запроса 10 (Покупатели товара в точке)
 func (h *ReportHandler) GetProductCustomers(c *gin.Context) {
 	productID, err1 := strconv.Atoi(c.Query("product_id"))
 	storeID, err2 := strconv.Atoi(c.Query("store_id"))

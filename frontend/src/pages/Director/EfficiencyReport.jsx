@@ -27,7 +27,7 @@ const EfficiencyReport = () => {
 
     return (
         <div>
-            <h3>Эффективность торговой точки (Запрос 7)</h3>
+            <h3>Эффективность торговой точки </h3>
             <form onSubmit={handleSearch} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                 <input
                     type="number"

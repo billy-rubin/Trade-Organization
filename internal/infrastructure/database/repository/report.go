@@ -159,7 +159,6 @@ func (r *ReportRepository) GetTurnoverByStoreType(ctx context.Context) ([]domain
 	return results, nil
 }
 
-// Запрос 6: Получить сведения о поставках определенного товара указанным поставщиком
 func (r *ReportRepository) GetSupplierDeliveries(ctx context.Context, supplierID, productID int, startDate, endDate time.Time) ([]domain.SupplierDeliveryReport, error) {
 	query := `
 		SELECT 
@@ -201,7 +200,6 @@ func (r *ReportRepository) GetSupplierDeliveries(ctx context.Context, supplierID
 	return result, nil
 }
 
-// Запрос 7: Эффективность торговой точки (отношение продаж к площади)
 func (r *ReportRepository) GetStoreEfficiency(ctx context.Context, storeID int) (domain.StoreEfficiencyReport, error) {
 	query := `
 		SELECT 
@@ -229,7 +227,6 @@ func (r *ReportRepository) GetStoreEfficiency(ctx context.Context, storeID int) 
 	return item, nil
 }
 
-// Запрос 10: Покупатели, купившие товар в конкретной точке
 func (r *ReportRepository) GetProductCustomers(ctx context.Context, productID, storeID int) ([]domain.ProductCustomerReport, error) {
 	query := `
 		SELECT DISTINCT 

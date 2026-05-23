@@ -38,7 +38,6 @@ type TurnoverReport struct {
 	TotalTurnover  float64
 }
 
-// Результат Запроса 6: Поставки товара
 type SupplierDeliveryReport struct {
 	OrderID      int       `json:"order_id"`
 	OrderDate    time.Time `json:"order_date"`
@@ -49,7 +48,6 @@ type SupplierDeliveryReport struct {
 	TotalCost    float64   `json:"total_cost"`
 }
 
-// Результат Запроса 7: Эффективность точки
 type StoreEfficiencyReport struct {
 	StoreID           int     `json:"store_id"`
 	StoreType         string  `json:"store_type"`
@@ -59,10 +57,9 @@ type StoreEfficiencyReport struct {
 	RevenuePerSqMeter float64 `json:"revenue_per_sq_meter"`
 }
 
-// Результат Запроса 10: Покупатели товара
 type ProductCustomerReport struct {
 	CustomerID      int     `json:"customer_id"`
 	CustomerName    string  `json:"customer_name"`
-	Characteristics *string `json:"characteristics"` // Указатель, так как может быть NULL
+	Characteristics *string `json:"characteristics"`
 	BoughtProduct   string  `json:"bought_product"`
 }

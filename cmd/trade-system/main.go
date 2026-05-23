@@ -72,7 +72,7 @@ func main() {
 	reportHandler := handlers.NewReportHandler(reportService)
 	storeHandler := handlers.NewStoreHandler(storeService)
 
-	router := customhttp.SetupRouter(authHandler, tradeHandler, reportHandler, supplyHandler, storeHandler) // Добавить storeHandler в аргументы
+	router := customhttp.SetupRouter(authHandler, tradeHandler, reportHandler, supplyHandler, storeHandler)
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: router,

@@ -36,7 +36,7 @@ const OrderDetailsReport = () => {
 
     return (
         <div>
-            <h2>Просмотр состава и номенклатуры заказа (Запрос 9)</h2>
+            <h2>Просмотр состава и номенклатуры заказа </h2>
             <form onSubmit={handleFetchOrder} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                 <input type="number" placeholder="Введите ID Заказа от поставщика" value={orderId} onChange={e => setOrderId(e.target.value)} required style={{ padding: '8px', width: '250px' }}/>
                 <button type="submit" style={{ padding: '8px 16px', background: '#1890ff', color: '#fff', border: 'none', cursor: 'pointer' }}>Открыть спецификацию</button>

@@ -27,7 +27,7 @@ const SupplierDeliveries = () => {
 
     return (
         <div>
-            <h2>Поставки определенного товара поставщиком (Запрос 6)</h2>
+            <h2>Поставки определенного товара поставщиком </h2>
             <form onSubmit={handleSearch} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '20px', maxWidth: '500px' }}>
                 <input type="number" placeholder="ID Поставщика" value={supplierId} onChange={e => setSupplierId(e.target.value)} required style={{ padding: '8px' }}/>
                 <input type="number" placeholder="ID Товара" value={productId} onChange={e => setProductId(e.target.value)} required style={{ padding: '8px' }}/>

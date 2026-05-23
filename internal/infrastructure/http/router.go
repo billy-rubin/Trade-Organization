@@ -53,8 +53,8 @@ func SetupRouter(
 				director.GET("/inventory", reportHandler.GetInventory)
 				director.GET("/profitability", reportHandler.GetProfitability)
 				director.GET("/turnover", reportHandler.GetTurnover)
-				director.GET("/efficiency", reportHandler.GetStoreEfficiency)             // Запрос 7
-				director.GET("/supplier-deliveries", reportHandler.GetSupplierDeliveries) // Запрос 6
+				director.GET("/efficiency", reportHandler.GetStoreEfficiency)
+				director.GET("/supplier-deliveries", reportHandler.GetSupplierDeliveries)
 				director.GET("/product-customers", reportHandler.GetProductCustomers)
 			}
 

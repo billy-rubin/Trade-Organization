@@ -20,8 +20,8 @@ const ManagerDashboard = () => {
         { id: 'request', label: 'Новая заявка точки' },
         { id: 'order', label: 'Заказ поставщику' },
         { id: 'receive', label: 'Приемка товара' },
-        { id: 'deliveries', label: 'Архив поставок (Запрос 6)' },
-        { id: 'details', label: 'Состав заказа (Запрос 9)' },
+        { id: 'deliveries', label: 'Архив поставок' },
+        { id: 'details', label: 'Состав заказа' },
     ];
 
     return (
